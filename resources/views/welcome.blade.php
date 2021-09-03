@@ -79,13 +79,11 @@
                 </div>
             @endif
 
-            <div class="content">
+            <div class="title m-b-md">
             <div>
-                Hello First Page!
+                Laravel
             </div>
-            <a href="{{ route('sample') }}">
-                新規ページへ
-            </a>
+            
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
