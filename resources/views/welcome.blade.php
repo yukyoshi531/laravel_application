@@ -79,10 +79,10 @@
                 </div>
             @endif
 
-            <div class="title m-b-md">
-            <div>
-                Laravel
-            </div>
+            <div class="content">
+                <div class="title m-b-md">
+                    Larevel
+                </div>
             
 
                 <div class="links">
