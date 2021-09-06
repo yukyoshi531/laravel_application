@@ -29,5 +29,36 @@ class PostController extends Controller
     
         return redirect()->route('post.index');
     }
+    public function show($id)
+    {
+    
+    $post = Post::findOrFail($id);
 
+    return view('posts.show', ['post' => $post]);
+
+    }
+    public function edit($id)
+    {
+        $post = Post::find0rFail($id);
+
+        if ($post->user_id !== Auth::id()){
+            return redirect('/');
+        }
+        return view('posts.edit',['post' => $post]);
+    }
+    public function update(PostRequest $request, $id)
+    {
+        $post = Post::fing0rFail($id);
+        
+        if ($post->user_id !== Auth::id()){
+            return redirect('/');
+        }
+    
+        $post->title = $request->title;
+        $post->body = $request->body;
+
+        $post->save();
+
+        return redirect('/');
+    }
 }
