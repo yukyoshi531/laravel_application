@@ -14,9 +14,9 @@ class PostController extends Controller
         $posts = Post::all();
         return view('posts.index',['posts'=>$posts]);
     }
-    public function create()
-    {
+    public function create(){
         dd('投稿画面だよ！！');
+        return view('posts.create');
     }
     public function store(PostRequest $request)
     {
@@ -44,8 +44,11 @@ class PostController extends Controller
         if ($post->user_id !== Auth::id()){
             return redirect('/');
         }
-        dd('編集しようとした投稿データの情報');
+        dd($post);
+    
+        return view('posts.edit',['post' => $post]);
     }
+    
     public function update(PostRequest $request, $id)
     {
         $post = Post::findOrFail($id);
