@@ -16,7 +16,7 @@ class PostController extends Controller
     }
     public function create()
     {
-        return view('posts.create');
+        dd('投稿画面だよ！！');
     }
     public function store(PostRequest $request)
     {
@@ -32,23 +32,23 @@ class PostController extends Controller
     public function show($id)
     {
     
-    $post = Post::findOrFail($id);
+        $post = Post::findOrFail($id);
 
-    return view('posts.show', ['post' => $post]);
+        return view('posts.show', ['post' => $post]);
 
     }
     public function edit($id)
     {
-        $post = Post::find0rFail($id);
+        $post = Post::findOrFail($id);
 
         if ($post->user_id !== Auth::id()){
             return redirect('/');
         }
-        return view('posts.edit',['post' => $post]);
+        dd('編集しようとした投稿データの情報');
     }
     public function update(PostRequest $request, $id)
     {
-        $post = Post::fing0rFail($id);
+        $post = Post::findOrFail($id);
         
         if ($post->user_id !== Auth::id()){
             return redirect('/');
@@ -61,4 +61,20 @@ class PostController extends Controller
 
         return redirect('/');
     }
+    public function delete($id)
+    {
+    
+        $post = Post::findOrFail($id);
+
+        if ($post->user_id !== Auth::id()) {
+            return redirect('/');
+        }
+
+        $post->delete(); 
+
+        return redirect('/');
+    }
+
+
+
 }
